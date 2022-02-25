@@ -41,13 +41,13 @@ piles_needed = tiles_needed / 10
 if(piles_needed % 1):
     piles_needed = piles_needed - (piles_needed % 1) + 1
 
-cut_for_height = bool(height % tile_height) * height
-cut_for_width = bool(width % tile_width) * width
+cut_for_height = bool(height % tile_height) * width
+cut_for_width = bool(width % tile_width) * height
 
-#print("tiles_needed: ", tiles_needed)
-#print("piles_needed: ", piles_needed)
-#print("cut_for_height: ", cut_for_height)
-#print("cut_for_width: ", cut_for_width)
+print("tiles_needed: ", tiles_needed)
+print("piles_needed: ", piles_needed)
+print("cut_for_height: ", cut_for_height)
+print("cut_for_width: ", cut_for_width)
 
 
 
