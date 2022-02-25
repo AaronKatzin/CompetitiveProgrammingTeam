@@ -20,11 +20,36 @@ def get_number():
         return float(data)
 
 # numpy and scipy are available for use
-import numpy
-import scipy
+#import numpy
+#import scipy
 
-a = get_number()
-b = get_number()
+width =  get_number()
+height =  get_number()
+tile_width = get_number()
+tile_height = get_number()
+pile_cost = get_number()
+work_cost_per_inch_cut = get_number()
 
-res = a + b
-print(res)
+area_to_cover = width * height
+area_per_tile = tile_width * tile_width
+
+tiles_needed = area_to_cover / area_per_tile
+if(tiles_needed % 1):
+    tiles_needed = tiles_needed - (tiles_needed % 1) + 1
+
+piles_needed = tiles_needed / 10
+if(piles_needed % 1):
+    piles_needed = piles_needed - (piles_needed % 1) + 1
+
+cut_for_height = bool(height % tile_height) * height
+cut_for_width = bool(width % tile_width) * width
+
+#print("tiles_needed: ", tiles_needed)
+#print("piles_needed: ", piles_needed)
+#print("cut_for_height: ", cut_for_height)
+#print("cut_for_width: ", cut_for_width)
+
+
+
+cost = int(piles_needed * pile_cost + (work_cost_per_inch_cut * (cut_for_height + cut_for_width)))# cutting cost
+print(cost)
