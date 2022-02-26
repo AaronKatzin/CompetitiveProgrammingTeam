@@ -19,12 +19,28 @@ def get_number():
     except ValueError:
         return float(data)
 
+def getDistance(a, b):
+    generations_from_a = 0
+    generations_from_b = 0
+
+    # parent of each node is floor of node val divided by 2. 
+    # So to find common parent we keep "floor dividing" the larger (and therefore lower in tree) node
+    while(a != b):
+        if a > b:
+            a = a >> 1
+            generations_from_a += 1
+        else:
+            b = b >> 1
+            generations_from_b += 1
+    return generations_from_a + generations_from_b
+
 # numpy and scipy are available for use
-import numpy
-import scipy
+#import numpy
+#import scipy
 
-a = get_number()
-b = get_number()
+lines = get_number()
 
-res = a + b
-print(res)
+for line in range(lines):
+    a = get_number()
+    b = get_number()
+    print(getDistance(a, b))
