@@ -39,10 +39,10 @@ for case in range(cases):
     correctly_wired_rooms_per_floor.sort()
     #print("[:switches_off]: ", correctly_wired_rooms_per_floor[:switches_off])
     for floor in range(switches_off):
-        #print("first loop room: ", room)
+        #print("first loop floor: ", floor)
         working_rooms += (rooms_per_floor - correctly_wired_rooms_per_floor[floor]) * 1
-    for floor in range(switches_off, floors - switches_off + 1):
-        #print("second loop room: ", room)
+    for floor in range(switches_off, floors):
+        #print("second loop floor: ", floor)
         working_rooms += correctly_wired_rooms_per_floor[floor]
     #print("-----> working_rooms: ", working_rooms)
     print(working_rooms)
