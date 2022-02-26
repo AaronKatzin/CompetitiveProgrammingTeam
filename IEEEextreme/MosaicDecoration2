@@ -31,12 +31,14 @@ pile_cost = get_number()
 work_cost_per_inch_cut = get_number()
 
 area_to_cover = width * height
-area_per_tile = tile_width * tile_width
+area_per_tile = tile_width * tile_height
 
 tiles_needed = area_to_cover / area_per_tile
-if(tiles_needed % 1):
-    tiles_needed = tiles_needed - (tiles_needed % 1) + 1
+# deleted below two lines since no need to round to nearest tile since we round to nearest pile
+#if(tiles_needed % 1):
+#    tiles_needed = tiles_needed - (tiles_needed % 1) + 1
 
+#calculate number of piles needed
 piles_needed = tiles_needed / 10
 if(piles_needed % 1):
     piles_needed = piles_needed - (piles_needed % 1) + 1
@@ -44,10 +46,10 @@ if(piles_needed % 1):
 cut_for_height = bool(height % tile_height) * width
 cut_for_width = bool(width % tile_width) * height
 
-print("tiles_needed: ", tiles_needed)
-print("piles_needed: ", piles_needed)
-print("cut_for_height: ", cut_for_height)
-print("cut_for_width: ", cut_for_width)
+#print("tiles_needed: ", tiles_needed)
+#print("piles_needed: ", piles_needed)
+#print("cut_for_height: ", cut_for_height)
+#print("cut_for_width: ", cut_for_width)
 
 
 
