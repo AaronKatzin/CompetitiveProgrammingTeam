@@ -19,12 +19,86 @@ def get_number():
     except ValueError:
         return float(data)
 
+# *Used existing algorithm with Yuval Meir's permission* 
+# efficient xor of consecutuve numbers taken from:
+# https://www.geeksforgeeks.org/find-xor-of-numbers-from-the-range-l-r/ 
+
+# Python3 implementation of the approach
+#from operator import xor
+ 
+# Function to return the XOR of elements
+# from the range [1, n]
+def findXOR(n):
+    mod = n % 4
+ 
+    # If n is a multiple of 4
+    if (mod == 0):
+        return n
+ 
+    # If n % 4 gives remainder 1
+    elif (mod == 1):
+        return 1
+ 
+    # If n % 4 gives remainder 2
+    elif (mod == 2):
+        return n + 1
+ 
+    # If n % 4 gives remainder 3
+    elif (mod == 3):
+        return 0
+ 
+# Function to return the XOR of elements
+# from the range [l, r]
+def findXORFun(l, r):
+    return (findXOR(l - 1) ^ findXOR(r))
+
+# end of geeksforgeeks existing algorithm
+
 # numpy and scipy are available for use
-import numpy
-import scipy
+#import numpy
+#import scipy
+lines = get_number()
 
-a = get_number()
-b = get_number()
+for line in range(lines):
+    length = get_number()
+    height = get_number()
+    start = get_number()
+    d1 = get_number()
+    d2 = get_number()
 
-res = a + b
-print(res)
+    #print(findXORFun(start, d1 - 1) ^ findXORFun(d2 + 1, start - 1 + length*height))
+
+    # find xor of outer rectangle
+    outer_xor = findXORFun(start, start - 1 + length*height)
+
+    # find xor of inner rectangle
+    if (d1 + start) % length < (d2 + start) % length:
+        inner_length = (((d2 + start) % length) - ((d1 + start) % length))
+        inner_start = d1
+        inner_end = d2
+    else:
+        inner_length = (((d1 + start) % length) - ((d2 + start) % length))
+        inner_start = d1 - inner_length
+        inner_end = d2 + inner_length
+
+    inner_height = ((inner_end - inner_start) / length)
+    
+    #print("inner_height before rounding: ", inner_height)
+
+    if inner_height % 1:
+        inner_height = inner_height - (inner_height % 1) + 1
+
+    inner_xor = 0
+    row_start = inner_start
+    #print("inner_start: ", inner_start)
+    #print("inner_end: ", inner_end)
+    #print("inner_height: ", inner_height)
+    # loop over rows of inner rectangle, xoring each row
+    for row in range(int(inner_height)):
+        #print("inner row: ", row_start, ", ", row_start + inner_length)
+        inner_xor = inner_xor ^ findXORFun(row_start, row_start + inner_length)
+        row_start += length
+
+
+    # inner rectangle xor outer rectangle will cancel out the inner xor
+    print(outer_xor ^ inner_xor)
