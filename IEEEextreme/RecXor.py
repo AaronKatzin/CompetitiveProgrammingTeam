@@ -71,23 +71,36 @@ for line in range(lines):
     # find xor of outer rectangle
     outer_xor = findXORFun(start, start - 1 + length*height)
 
+    def getY(num):
+        return ((num-start) % length) + 1
     # find xor of inner rectangle
-    if (d1 + start) % length < (d2 + start) % length:
-        inner_length = (((d2 + start) % length) - ((d1 + start) % length))
+    if getY(d1) < getY(d2) :
+    # if ((d1 + start) % length) < ((d2 + start) % length):
+        inner_length = getY(d2) - getY(d1) + 1
         inner_start = d1
         inner_end = d2
+        #print("if")
     else:
-        inner_length = (((d1 + start) % length) - ((d2 + start) % length))
-        inner_start = d1 - inner_length
-        inner_end = d2 + inner_length
+        inner_length = getY(d1) - getY(d2) + 1
+        inner_start = d1 - (inner_length - 1)
+        inner_end = d2 + (inner_length - 1)
+        #print("else")
 
     inner_height = ((inner_end - inner_start) / length)
     
+
     #print("inner_height before rounding: ", inner_height)
 
     if inner_height % 1:
         inner_height = inner_height - (inner_height % 1) + 1
-
+        
+    #print("d1: ", d1)
+    #print("d2: ", d2)
+    #print("inner_length: ", inner_length) 
+    #print("inner_start: ", inner_start)
+    #print("inner_end: ", inner_end)
+    #print("inner_height: ", inner_height)
+    
     inner_xor = 0
     row_start = inner_start
     #print("inner_start: ", inner_start)
@@ -95,8 +108,8 @@ for line in range(lines):
     #print("inner_height: ", inner_height)
     # loop over rows of inner rectangle, xoring each row
     for row in range(int(inner_height)):
-        #print("inner row: ", row_start, ", ", row_start + inner_length)
-        inner_xor = inner_xor ^ findXORFun(row_start, row_start + inner_length)
+        #print("inner row: ", row_start, ", ", row_start + inner_length -1)
+        inner_xor = inner_xor ^ findXORFun(row_start, row_start + inner_length - 1)
         row_start += length
 
 
