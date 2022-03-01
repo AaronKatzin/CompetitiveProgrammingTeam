@@ -1,7 +1,7 @@
 # a simple parser for python. use get_number() and get_word() to read
 def parser():
     while 1:
-        data = list(input().split(' '))
+        data = list(input().split('\n'))
         for number in data:
             if len(number) > 0:
                 yield(number)   
@@ -20,11 +20,26 @@ def get_number():
         return float(data)
 
 # numpy and scipy are available for use
-import numpy
-import scipy
+#import numpy
+#import scipy
 
-a = get_number()
-b = get_number()
+teams = {
+"Team 1": 1,
+"Knapsackers @UNT": 2,
+"MoraSeekers": 3,
+"SurpriseTeam": 4,
+"CuSAT": 5,
+"DongskarPedongi": 6,
+"cofrades": 7,
+"viRUs": 8,
+"TeamName": 9,
+"TeamEPFL1": 10,
+"whatevs": 11,
+"WildCornAncestors": 12,
+"TheCornInTheFields": 13,
+"Aurora": 14
 
-res = a + b
-print(res)
+}
+
+team = get_word()
+print(teams[team])
