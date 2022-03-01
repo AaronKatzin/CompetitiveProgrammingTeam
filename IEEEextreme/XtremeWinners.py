@@ -1,1 +1,1 @@
-print({"m 1":1,"UNT":2,"ers":3,"eam":4,"SAT":5,"ngi":6,"des":7,"RUs":8,"ame":9,"FL1":10,"evs":11,"ors":12,"lds":13,"ora":14}[input()[-3:]])
+print({"ea":1,"s@":2,"ek":3,"eT":4,"Cu":5,"do":6,"ra":7,"vi":8,"mN":9,"EP":10,"at":11,"st":12,"ie":13,"ur":14}[input()[-5:-3]])
