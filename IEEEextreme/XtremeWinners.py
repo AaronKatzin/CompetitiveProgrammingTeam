@@ -1,1 +1,1 @@
-print({"Team ":1,"Knaps":2,"MoraS":3,"Surpr":4,"CuSAT":5,"Dongs":6,"cofra":7,"viRUs":8,"TeamN":9,"TeamE":10,"whate":11,"WildC":12,"TheCo":13,"Auror":14}[input()[:5]])
+print({"m 1":1,"UNT":2,"ers":3,"eam":4,"SAT":5,"ngi":6,"des":7,"RUs":8,"ame":9,"FL1":10,"evs":11,"ors":12,"lds":13,"ora":14}[input()[-3:]])
