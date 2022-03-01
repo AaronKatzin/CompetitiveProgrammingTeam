@@ -1,1 +1,1 @@
-print({"ea":1,"s@":2,"ek":3,"eT":4,"Cu":5,"do":6,"ra":7,"vi":8,"mN":9,"EP":10,"at":11,"st":12,"ie":13,"ur":14}[input()[-5:-3]])
+print(["ea","s@","ek","eT","Cu","do","ra","vi","mN","EP","at","st","ie","ur"].index(input()[-5:-3])+1)
