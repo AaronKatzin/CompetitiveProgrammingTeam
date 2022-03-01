@@ -1,1 +1,1 @@
-print({"Team 1":1,"Knapsackers@UNT":2,"MoraSeekers":3,"SurpriseTeam":4,"CuSAT":5,"DongskarPedongi":6,"cofrades":7,"viRUs":8,"TeamName":9,"TeamEPFL1":10,"whatevs":11,"WildCornAncestors":12,"TheCornInTheFields":13,"Aurora":14}[input()])
+print({"Team ":1,"Knaps":2,"MoraS":3,"Surpr":4,"CuSAT":5,"Dongs":6,"cofra":7,"viRUs":8,"TeamN":9,"TeamE":10,"whate":11,"WildC":12,"TheCo":13,"Auror":14}[input()[:5]])
