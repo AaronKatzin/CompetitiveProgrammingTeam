@@ -1,1 +1,1 @@
-print(["ea","s@","ek","eT","Cu","do","ra","vi","mN","EP","at","st","ie","ur"].index(input()[-5:-3])+1)
+print("eas@ekeTCudoravimNEPatstieur".find(input()[-5:-3])//2+1)
