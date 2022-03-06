@@ -7,8 +7,6 @@ def parser():
         for number in data:
             if len(number) > 0:
                 yield(number)
-            else:
-                yield(None)
 
 input_parser = parser()
 
@@ -23,43 +21,16 @@ def get_number():
     except ValueError:
         return float(data)
 
-# numpy and scipy are available for use
+# numpy and scipy are available for use 
 import numpy
-import scipy
+#import scipy
 
 # Program to find third side of triangle using law of cosines
 # adapted from https://www.geeksforgeeks.org/program-find-third-side-triangle-using-law-cosines/
  
-# Function to calculate cos
-# value of angle c
-def cal_cos(n):
- 
-    accuracy = 0.0001
-    x1, denominator, cosx, cosval = 0, 0, 0, 0
- 
-    # Converting degrees to radian
-    n = n * (3.142 / 180.0)
- 
-    x1 = 1
- 
-    # Maps the sum along the series
-    cosx = x1
- 
-    # Holds the actual value of sin(n)
-    cosval = numpy.cos(n)
-    i = 1
-    while (accuracy <= abs(cosval - cosx)):
- 
-        denominator = 2 * i * (2 * i - 1)
-        x1 = -x1 * n * n / denominator
-        cosx = cosx + x1
-        i = i + 1
- 
-    return cosx
- 
 # Function to find third side
 def third_side(a, b, c):
-    angle = cal_cos(c)
+    angle = numpy.cos(numpy.radians(c))
     return numpy.sqrt((a * a) +
                    (b * b) - 2 * a * b * angle)
  
@@ -83,7 +54,7 @@ for i, letter in enumerate(phrase):
     if i == 0:
         distance += center_to_letter
     else:
-        angle = abs(angles[phrase[i-1]] - angles[letter])
+        angle = min(abs(angles[phrase[i-1]] - angles[letter]), abs(360 - abs(angles[phrase[i-1]] - angles[letter])))
         distance_between_letters = third_side(center_to_letter, center_to_letter, angle)
         distance += distance_between_letters
         #print(distance_between_letters)
@@ -91,6 +62,6 @@ for i, letter in enumerate(phrase):
 distance_rounded = int(numpy.ceil(distance))
 #print("phrase: ", phrase)
 #print("angles: ", angles)
-#print("distance: ", distance_rounded)
+#print("distance: ", distance)
 
 print(distance_rounded)
