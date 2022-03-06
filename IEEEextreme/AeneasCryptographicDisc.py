@@ -22,22 +22,19 @@ def get_number():
         return float(data)
 
 # numpy and scipy are available for use 
-import numpy
-#import scipy
+#import numpy
 
-# Program to find third side of triangle using law of cosines
-# adapted from https://www.geeksforgeeks.org/program-find-third-side-triangle-using-law-cosines/
- 
 # Function to find third side
-def third_side(a, b, c):
-    angle = numpy.cos(numpy.radians(c))
-    return numpy.sqrt((a * a) +
-                   (b * b) - 2 * a * b * angle)
- 
- # END Program to find third side of triangle using law of cosines
+# previously function used numpy functions such as sqrt, cos, radian. I replaced them with approximation fomulas based on thes e and pi values
+e = 2.718281828459045
+pi=3.141592653589793238462643383279
+def third_side(center_to_letter, angle):
+    angle = angle*(pi/180)
+    cos_angle = (e**(angle*1j)).real
+    return (2*(center_to_letter**2)- 2*(center_to_letter**2)*cos_angle)**(1/2)
 
 center_to_letter = get_number()
-angles = dict()
+angles = {}
 
 for i in range(26):
     line = get_line().split(' ')
@@ -48,18 +45,19 @@ phrase = get_line()
 # clean and capitalize phrase:
 phrase = ''.join(ch for ch in phrase if ch.isalpha()).upper()
 
-distance = 0.00
+# initialize distance as distance from center to first letter
+distance = center_to_letter
 
-for i, letter in enumerate(phrase):
-    if i == 0:
-        distance += center_to_letter
-    else:
-        angle = min(abs(angles[phrase[i-1]] - angles[letter]), abs(360 - abs(angles[phrase[i-1]] - angles[letter])))
-        distance_between_letters = third_side(center_to_letter, center_to_letter, angle)
-        distance += distance_between_letters
-        #print(distance_between_letters)
+for i in range(1, len(phrase)):
 
-distance_rounded = int(numpy.ceil(distance))
+    angle = min(abs(angles[phrase[i-1]] - angles[phrase[i]]), abs(360 - abs(angles[phrase[i-1]] - angles[phrase[i]])))
+    
+    # find distance between letters by calculating third side of trianlge using rule of cosines
+    distance_between_letters = third_side(center_to_letter, angle)
+    distance += distance_between_letters
+    #print(distance_between_letters)
+
+distance_rounded = int((-1 * distance)//1) * -1
 #print("phrase: ", phrase)
 #print("angles: ", angles)
 #print("distance: ", distance)
