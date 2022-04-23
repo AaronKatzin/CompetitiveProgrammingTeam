@@ -57,15 +57,16 @@ num1_gen = getNext_num1()
 num2_gen = getNext_num2()
 sum = []
 carry = 0
-for i in range(max(len(num1), len(num2))):
+max_len = max(len(num1), len(num2))
+for i in range(max_len):
     curr1 = map.index(str(next(num1_gen))) # dec
     curr2 = map.index(str(next(num2_gen))) # dec
     currSum = map[(curr1 + curr2 + carry) % base]  # 'base'
-    sum = [currSum] + sum
+    sum.append(currSum) # building sum list in reverse (as pooposed to concatincating to beginning of non-reversed list) to save complexity 
     carry = (curr1 + curr2 + carry) // base # dec
 
-sum = [' ' * (len(raw_num1) - len(sum))] + sum
-sum = ''.join(sum)
+sum.append(' ')
+sum = ''.join(sum)[::-1] # since list was built in reverse, now need to join into string and reverse it back
 
 
 print(keyLine)
